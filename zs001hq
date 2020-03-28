@@ -1,0 +1,19 @@
+import datetime
+import sys
+import importlib
+from bs4 import BeautifulSoup
+import re
+import requests
+import chardet
+import json
+import csv
+
+
+if __name__ == "__main__":
+
+    zs001 = "https://xueqiu.com/S/SH000001"
+    r = requests.get(zs001)
+    r.encoding = "gbk"
+    soup = BeautifulSoup(r.text, 'lxml')  # lxml为解析器
+    trs = soup.find_all('tr', class_='separateTop')
+    varStr = soup.p.string
